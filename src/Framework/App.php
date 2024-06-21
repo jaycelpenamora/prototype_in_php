@@ -14,14 +14,13 @@ class App
         $this->router = new Router();
     }
 
-    public function run()
+    public function run(): void
     {
         echo "Running App";
     }
 
-    public function get(string $path)
+    public function get(string $path, array $controller): void
     {
-        $this->router->add('GET', $path);
+        $this->router->add('GET', $path, $controller);
     }
-
 }
