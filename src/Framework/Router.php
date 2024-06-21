@@ -12,17 +12,26 @@ class Router
     public function add(string $method, string $path, array $controller): void
     {
         $path = $this->normalizePath($path);
-        $this->routes[] = [ 
+        $this->routes[] = [
             'path' => $path,
             'method' => strtoupper($method),
             'controller' => $controller
         ];
     }
 
-    private function normalizePath(string $path): string {
+    private function normalizePath(string $path): string
+    {
         $path = trim($path, '/');
         $path = "/{$path}/";
-        $path = preg_replace('#[/]{2,}#','/',$path);
+        $path = preg_replace('#[/]{2,}#', '/', $path);
         return $path;
+    }
+
+    public function dispatch(string $path, string $method): void
+    {
+        $path = $this->normalizePath($path);
+        $method = strtoupper($method);
+
+        echo $path . $method;
     }
 }
