@@ -10,7 +10,7 @@ use Framework\App;
 
 $app = new App();
 
-$app->get('/',['App\Controllers\HomeController',''home']);
+$app->get('/',['App\Controllers\HomeController','home']);
 
 dd($app);
 
