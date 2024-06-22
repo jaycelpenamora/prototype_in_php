@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App;
-
-function dd(mixed $value)
+function dd(mixed $value): void
 {
     echo "<pre>";
     var_dump($value);

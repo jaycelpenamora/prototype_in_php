@@ -6,7 +6,6 @@ namespace Framework;
 
 class Router
 {
-
     private array $routes = [];
 
     public function add(string $method, string $path, array $controller): void
@@ -31,11 +30,13 @@ class Router
     {
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
-
-        foreach($this->routes as $route){
-            if(!preg_match("#^{$route['path']}$#", $path) || $route['method'] !== $method){
+        foreach ($this->routes as $route) {
+            if (!preg_match("#^{$route['path']}$#", $path) || $route['method'] !== $method) {
                 continue;
             }
+            [$class, $function] = $route['controller'];
+            $controllerInstance = new $class;
+            $controllerInstance->{$function}();
         }
     }
 }
