@@ -12,5 +12,6 @@ use App\Controllers\HomeController;
 $app = new App();
 
 $app->get('/', [HomeController::class, 'home']);
+$app->get('/about.php', [HomeController::class, 'home']);
 
 return $app;

@@ -1,3 +1,4 @@
+/* ADDITIONAL CLASSES WITH THEIR PROPERTIES SHOULD BE ADDED AT THE END OF THE FILE. -jaycel */
 *,
 :before,
 :after {
@@ -1367,3 +1368,5 @@ hr {
     column-gap: 2.5rem;
   }
 }
+
+/* ADDITIONAL CLASSES HERE */
