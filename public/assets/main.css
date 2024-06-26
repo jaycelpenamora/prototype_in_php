@@ -1370,3 +1370,8 @@ hr {
 }
 
 /* ADDITIONAL CLASSES HERE */
+
+.bg-navy {
+  --tw-border-opacity: 1;
+  background-color: #160A31;
+}
