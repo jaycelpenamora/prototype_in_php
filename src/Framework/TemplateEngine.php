@@ -26,7 +26,8 @@ class TemplateEngine
         return $output;
     }
 
-    public function resolve(string $path):string{
+    public function resolve(string $path): string
+    {
         return "{$this->basePath}/{$path}";
     }
 }
