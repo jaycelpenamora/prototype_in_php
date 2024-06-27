@@ -12,6 +12,5 @@ function dd(mixed $value): void
 
 function e(mixed $value): string
 {
-    htmlspecialchars((string) $value);
-    return $value;
+    return htmlspecialchars((string) $value);
 }

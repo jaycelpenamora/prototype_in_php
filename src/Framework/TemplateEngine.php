@@ -15,7 +15,6 @@ class TemplateEngine
     public function render(string $template, array $data = []): mixed
     {
         extract($data, EXTR_SKIP);
-
         ob_start();
 
         include $this->resolve($template);
