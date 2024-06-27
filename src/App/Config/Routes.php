@@ -10,13 +10,13 @@ use App\Controllers\HomeController;
 use App\Controllers\AboutController;
 use App\Controllers\LoginController;
 use App\Controllers\LogoutController;
-use App\Controllers\RegisterController;
+use App\Controllers\AuthController;
 
 function registerRoutes(App $app): void
 {
     $app->get('/', [HomeController::class, 'home']);
-    $app->get('/about', [AboutController::class, 'about']);
-    $app->get('/login', [LoginController::class, 'login']);
-    $app->get('/logout', [LogoutController::class, 'logout']);
-    $app->get('/register', [RegisterController::class, 'register']);
+    $app->get('about', [AboutController::class, 'about']);
+    $app->get('login', [LoginController::class, 'login']);
+    $app->get('logout', [LogoutController::class, 'logout']);
+    $app->get('register', [AuthController::class, 'register']);
 }

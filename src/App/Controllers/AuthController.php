@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-class RegisterController
+class AuthController
 {
 
     public function __construct(private TemplateEngine $view)
@@ -15,8 +15,6 @@ class RegisterController
 
     public function register(): void
     {
-        echo $this->view->render("/register.php", [
-            'title' => 'Register'
-        ]);
+        echo $this->view->render("register.php");
     }
 }

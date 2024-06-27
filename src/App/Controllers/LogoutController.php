@@ -16,8 +16,6 @@ class LogoutController
 
     public function logout(): void
     {
-        echo $this->view->render("/logout.php", [
-            'title' => 'Logout'
-        ]);
+        echo $this->view->render("logout.php" );
     }
 }

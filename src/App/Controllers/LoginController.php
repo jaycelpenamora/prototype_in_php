@@ -15,8 +15,6 @@ class LoginController
 
     public function login(): void
     {
-        echo $this->view->render("/login.php", [
-            'title' => 'Login'
-        ]);
+        echo $this->view->render("login.php");
     }
 }

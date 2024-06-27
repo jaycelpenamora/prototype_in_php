@@ -12,8 +12,9 @@ class TemplateDataMiddleware implements MiddlewareInterface
     public function __construct(private TemplateEngine $view)
     {
     }
-    public function handle(callable $next)
+    public function handle(callable $next): void
     {
-        echo 'handling Template Data Middleware';
+        $this->view->addGlobal('title', 'Rental Tracker');
+        $next();
     }
 }
