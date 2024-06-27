@@ -16,7 +16,7 @@ class RegisterController
     public function register(): void
     {
         echo $this->view->render("/register.php", [
-            'title' => 'Register Page'
+            'title' => 'Register'
         ]);
     }
 }
