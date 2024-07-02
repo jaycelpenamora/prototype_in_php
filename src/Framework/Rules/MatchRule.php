@@ -19,6 +19,6 @@ class MatchRule implements RuleInterface
     public function getMessage(array $data, string $field, array $params): string
     {
         $string = ucfirst($params[0]);
-        return  "{$string} does not match";
+        return  "{$string}s does not match";
     }
 } 
