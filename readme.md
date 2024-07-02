@@ -22,8 +22,9 @@ If application don't run then make sure to do the following:\
     </Directory>
 </VirtualHost>
 ```
-    Step 4: Start xampp
-    Step 5: Access prototype.local on your browser
+    Step 4: Make sure to add 127.0.0.1 prototype.local to your host file. You might need to restart windows.
+    Step 5: Start xampp \
+    Step 6: Access prototype.local on your browser
 
     
 
