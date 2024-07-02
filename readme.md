@@ -7,6 +7,11 @@ If application don't run then make sure to do the following:\
     Step 2: Enable virtual host by modifying **INSTALLATION_DIR/etc/httpd.conf** uncomment the line with the Include under Virtual Host section \
     Step 3: Add the following lines to \
     **INSTALLATION_DIR/etc/extra/httpd-vhost.conf**
+    Step 4: Make sure to add 127.0.0.1 prototype.local to your host file. You might need to restart windows.
+    Step 5: Start xampp \
+    Step 6: Access prototype.local on your browser
+
+        
 ```
 <VirtualHost *:79>
     # ServerAdmin webmaster@dummy-host1.example.com
@@ -22,11 +27,6 @@ If application don't run then make sure to do the following:\
     </Directory>
 </VirtualHost>
 ```
-    Step 4: Make sure to add 127.0.0.1 prototype.local to your host file. You might need to restart windows.
-    Step 5: Start xampp \
-    Step 6: Access prototype.local on your browser
-
-    
 
 
     
