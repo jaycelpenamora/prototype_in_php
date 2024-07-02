@@ -3,4 +3,4 @@ Requirements\
     2. PHP 8 <   
     3. Enable output buffering \
     Optional\
-    4. Enable virtual host \
+    4. Enable virtual host 
