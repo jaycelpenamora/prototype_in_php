@@ -11,7 +11,7 @@ class Validator
 {
     private array $rules = [];
 
-    public function add(string $alias, RuleInterface $rule):void
+    public function add(string $alias, RuleInterface $rule): void
     {
         $this->rules[$alias] = $rule;
     }
@@ -21,6 +21,14 @@ class Validator
         $errors = [];
         foreach ($fields as $field => $rules) {
             foreach ($rules as $rule) {
+                $ruleParams = [];
+
+                if (str_contains($rule, ':')) {
+                    [$rule, $ruleParams] = explode(':', $rule);
+                    $ruleParams = explode(',', $ruleParams);
+                    dd($ruleParams);
+                }
+
                 $ruleValidator = $this->rules[$rule];
 
                 if ($ruleValidator->validate($data, $field, [])) {
