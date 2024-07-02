@@ -7,11 +7,17 @@
     <label class="block">
       <span class="text-gray-700">Email address</span>
       <input name="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="john@example.com" />
+      <?php if (array_key_exists('email', $errors)) : ?>
+        <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
+          <?php echo e($errors['email'][0]); ?>
+        </div>
+      <?php endif; ?>
     </label>
     <!-- Age -->
     <label class="block">
       <span class="text-gray-700">Age</span>
       <input name="age" type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+
     </label>
     <!-- Country -->
     <label class="block">
