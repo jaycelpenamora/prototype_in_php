@@ -75,12 +75,12 @@
           <label class="inline-flex items-center">
             <input name="tos" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" type="checkbox" />
             <span class="ml-2">I accept the terms of service.</span>
-            <?php if (array_key_exists('tos', $errors)) : ?>
-              <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
-                <?php echo e($errors['tos'][0]); ?>
-              </div>
-            <?php endif; ?>
           </label>
+          <?php if (array_key_exists('tos', $errors)) : ?>
+          <div class="bg-gray-100 mt-2 p-2 text-red-500">
+            <?php echo e($errors['tos'][0]); ?>
+          </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
