@@ -1,7 +1,7 @@
 If application don't run then make sure to do the following:\
     1. Make sure you have **Composer** then run "composer dump-autoload"\
     2. PHP 8 <   
-    3. Enable output buffering \
+    3. Most installations have output buffering enabled. If not, then enable it. \
     Optional **Enabling Virtual Host** \
     Step 1: Stop Xampp \
     Step 2: Enable virtual host by modifying **INSTALLATION_DIR/etc/httpd.conf** uncomment the line with the Include under Virtual Host section \
