@@ -14,3 +14,10 @@ function e(mixed $value): string
 {
     return htmlspecialchars((string) $value);
 }
+
+function redirectTo(string $url): void
+{
+    header("Location: {$url}");
+    http_response_code(302); //302: temporary redirect
+    exit;
+}

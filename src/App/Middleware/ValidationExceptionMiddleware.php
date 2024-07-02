@@ -2,25 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Middleware\ValidationExceptionMiddleware;
+namespace App\Middleware;
 
-use App\Middleware\TemplateDataMiddleware;
+use Framework\Contracts\MiddlewareInterface;
 use Framework\Exceptions\ValidationException;
-use Framework\TemplateEngine;
 
-class ValidationExceptionMiddleware implements TemplateDataMiddleware
+class ValidationExceptionMiddleware implements MiddlewareInterface
 {
-    public function __construct(private TemplateEngine $view){
-
-    }
-
     public function handle(callable $next): void
     {
-        try{
+        try {
             $next();
-        }
-        catch(ValidationException $e){
-            dd($e);
+        } catch (ValidationException $e) {
+            $_SESSION['errors'] = $e->errors;
+            $refer = $_SERVER['HTTP_REFERER'] ?? "/";
+            redirectTo($refer);
         }
     }
 }
