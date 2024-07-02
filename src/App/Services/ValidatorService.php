@@ -7,6 +7,10 @@ namespace App\Services;
 use Framework\Validator;
 use Framework\Rules\RequiredRule;
 use Framework\Rules\EmailRule;
+use Framework\Rules\MinRule;
+use Framework\Rules\InRule;
+use Framework\Rules\UrlRule;
+use Framework\Rules\MatchRule;
 
 class ValidatorService
 {
@@ -18,6 +22,10 @@ class ValidatorService
 
         $this->validator->add('required', new RequiredRule());
         $this->validator->add('email', new EmailRule());
+        $this->validator->add('min', new MinRule());
+        $this->validator->add('in', new InRule());
+        $this->validator->add('url', new UrlRule());
+        $this->validator->add('match', new MatchRule());
     }
 
     public function validateRegister(array $data): void
@@ -27,10 +35,10 @@ class ValidatorService
             [
                 'email' => ['required', 'email'],
                 'age' => ['required','min:16'],
-                'country' => ['required'],
-                'social_media_url' => ['required'],
+                'country' => ['required','in:Philippines,Malaysia,Singapore,Indonesia'],
+                'social_media_url' => ['required','url'],
                 'password' => ['required'],
-                'confirm_password' => ['required'],
+                'confirm_password' => ['required', 'match:password'],
                 'tos' => ['required']
             ]
         );

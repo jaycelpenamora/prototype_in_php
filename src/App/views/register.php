@@ -5,7 +5,7 @@
     <!-- Email -->
     <label class="block">
       <span class="text-gray-700">Email address</span>
-      <input name="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="john@example.com" />
+      <input value="<?php echo e($oldFormData['email'] ?? ''); ?>" name="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="john@example.com" />
       <?php if (array_key_exists('email', $errors)) : ?>
         <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
           <?php echo e($errors['email'][0]); ?>
@@ -15,7 +15,7 @@
     <!-- Age -->
     <label class="block">
       <span class="text-gray-700">Age</span>
-      <input name="age" type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+      <input value="<?php echo e($oldFormData['age'] ?? ''); ?>"name="age" type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
       <?php if (array_key_exists('age', $errors)) : ?>
         <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
           <?php echo e($errors['age'][0]); ?>
@@ -25,7 +25,7 @@
     <!-- Country -->
     <label class="block">
       <span class="text-gray-700">Country</span>
-      <select name="country" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+      <select value="<?php echo e($oldFormData['country'] ?? ''); ?>" name="country" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
         <option value="Philippines">Philippines</option>
         <option value="Malaysia">Malaysia</option>
         <option value="Singapore">Singapore</option>
@@ -41,7 +41,7 @@
     <!-- Social Media URL -->
     <label class="block">
       <span class="text-gray-700">Social Media URL</span>
-      <input name="social_media_url" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+      <input value="<?php echo e($oldFormData['social_media_url'] ?? ''); ?>" name="social_media_url" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
       <?php if (array_key_exists('social_media_url', $errors)) : ?>
         <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
           <?php echo e($errors['social_media_url'][0]); ?>

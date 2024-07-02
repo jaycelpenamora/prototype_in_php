@@ -26,15 +26,18 @@ class Validator
                 if (str_contains($rule, ':')) {
                     [$rule, $ruleParams] = explode(':', $rule);
                     $ruleParams = explode(',', $ruleParams);
-                    dd($ruleParams);
                 }
 
                 $ruleValidator = $this->rules[$rule];
 
-                if ($ruleValidator->validate($data, $field, [])) {
+                if ($ruleValidator->validate($data, $field, $ruleParams)) {
                     continue;
                 }
-                $errors[$field][] = $ruleValidator->getMessage($data, $field, []);
+                $errors[$field][] = $ruleValidator->getMessage(
+                    $data,
+                    $field,
+                    $ruleParams
+                );
             }
         }
         if (count($errors)) {
