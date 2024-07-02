@@ -1,5 +1,5 @@
 Requirements
-    1. Composer then run "composer dump-autoload"
+    1. Make sure you have **Composer** then run "composer dump-autoload"
     2. PHP 8 < 
     3. Enable output buffering
     Optional
