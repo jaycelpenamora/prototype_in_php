@@ -18,7 +18,11 @@ class SessionMiddleware implements MiddlewareInterface
         if (headers_sent($filename, $line)) {
             throw new SessionException("Headers already sent. Consider enabling output buffering. Output from {$filename} at line {$line}");
         }
+
         session_start();
+
         $next();
+
+        session_write_close();
     }
 }

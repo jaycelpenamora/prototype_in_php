@@ -15,6 +15,6 @@ class RequiredRule implements RuleInterface
 
     public function getMessage(array $data, string $field, array $params): string
     {
-        return "Field {$field} is required"; 
+        return "Field is required"; 
     }
 }
