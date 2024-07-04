@@ -1,18 +1,23 @@
 <?php
 
-$driver = "mysql";
+include __DIR__ . '/src/Framework/Database.php';
 
-$config = http_build_query(data: [
+use Framework\Database;
+
+$db = new Database('mysql', [
     'host' => 'localhost',
     'port' => 3306,
-    'dbname' => 'test'
-], arg_separator: ';');
+    'dbname' => 'test',
+], 'root', '');
 
-$dsn = "{$driver}:{$config}";
-$username = 'root';
-$password = '';
+$search = "Selena";
 
-$db = new PDO($dsn, $username, $password);
-// $db = new PDO("mysql:host=localhost;port=3306;dbname=user_db", 'root', '');
+$query = "SELECT * FROM items WHERE name=:name";
 
-echo "Database connection established successfully\n";
+$stmt = $db->connection->prepare($query);
+
+$stmt->bindValue('name', $search, PDO::PARAM_STR);
+
+$stmt->execute();
+
+var_dump($stmt->fetchAll(PDO::FETCH_OBJ));

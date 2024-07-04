@@ -1,5 +1,6 @@
 <?php
-phpinfo();
+
+// phpinfo();
 include __DIR__ . "/../src/App/functions.php";
 
 // dd(PDO::getAvailableDrivers());
