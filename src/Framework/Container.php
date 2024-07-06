@@ -15,6 +15,7 @@ class Container
 
     public function addDefinitions(array $newDefinitions): void
     {
+        // Merging definitions with new definitions
         $this->definitions = [...$this->definitions, ...$newDefinitions];
         // dd($this->definitions);
     }
