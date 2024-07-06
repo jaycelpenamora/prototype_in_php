@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `rentals_T` (
     `rental_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `user_id` BIGINT UNSIGNED NOT NULL,
     `movie_id` BIGINT UNSIGNED NOT NULL,
-    `issued_date` DATETIME NOT NULL,
+    `issued_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `due_date` DATETIME NOT NULL,
-    `return_date` DATETIME NOT NULL,
+    `return_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (`user_id`) REFERENCES `users_T` (`user_id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movies_T` (`movie_id`)
 );
