@@ -3,7 +3,7 @@
         'name' => 'jaycel/prototype',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '1f8910c1e67451ec3b4ed70ca1e94c069f47268c',
+        'reference' => '6941a4a64560dc2f7ba6218884180d41b1ff84ec',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'jaycel/prototype' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '1f8910c1e67451ec3b4ed70ca1e94c069f47268c',
+            'reference' => '6941a4a64560dc2f7ba6218884180d41b1ff84ec',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
