@@ -10,7 +10,8 @@ use App\Controllers\{
     HomeController,
     AboutController,
     AuthController,
-    TransactionController
+    TransactionController,
+    ErrorController
 };
 
 use App\Middleware\{
@@ -28,4 +29,5 @@ function registerRoutes(App $app): void
     $app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
     $app->get('/transaction', [TransactionController::class, 'createView'])->add(AuthRequiredMiddleware::class);
+    $app->setErrorHandler([ErrorController::class, 'notFound']);
 }

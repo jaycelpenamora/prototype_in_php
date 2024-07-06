@@ -14,7 +14,7 @@ class App
         $this->router = new Router();
         $this->container = new Container();
 
-        if($containerDefinitionsPath){
+        if ($containerDefinitionsPath) {
             $containerDefinitions = include $containerDefinitionsPath;
             $this->container->addDefinitions($containerDefinitions);
         }
@@ -52,4 +52,8 @@ class App
         $this->router->addRouteMiddleware($middleware);
     }
 
+    public function setErrorHandler(array $controller): void
+    {
+        $this->router->setErrorHandler($controller);
+    }
 }
