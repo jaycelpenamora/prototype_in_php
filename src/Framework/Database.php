@@ -26,15 +26,30 @@ class Database
 
     public function query(string $query, array $params = []): Database
     {
-        $this->connection->query($query);
+        $this->stmt = $this->connection->prepare($query);
 
         $this->stmt->execute($params);
 
         return $this;
     }
 
-    public function count(): int
+    public function count(): mixed
     {
-        return (int)$this->stmt->fetchColumn();
+        return $this->stmt->fetchColumn();
+    }
+
+    public function find(): mixed
+    {
+        return $this->stmt->fetch();
+    }
+
+    public function id(): string|false
+    {
+        return $this->connection->lastInsertId();
+    }
+
+    public function findAll(): array|false
+    {
+        return $this->stmt->fetchAll();
     }
 }

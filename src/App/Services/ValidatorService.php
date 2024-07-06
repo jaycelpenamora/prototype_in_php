@@ -35,11 +35,22 @@ class ValidatorService
             [
                 'username' => ['required'],
                 'email' => ['required', 'email'],
-                'age' => ['required','min:16'],
-                'country' => ['required','in:Philippines,Malaysia,Singapore,Indonesia'],
+                'age' => ['required', 'min:16'],
+                'country' => ['required', 'in:Philippines,Malaysia,Singapore,Indonesia'],
                 'password' => ['required'],
                 'confirm_password' => ['required', 'match:password'],
                 'tos' => ['required']
+            ]
+        );
+    }
+
+    public function validateLogin(array $data): void
+    {
+        $this->validator->validate(
+            $data,
+            [
+                'email_username' => ['required'],
+                'password' => ['required']
             ]
         );
     }

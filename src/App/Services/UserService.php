@@ -22,7 +22,7 @@ class UserService
             ]
         )->count();
 
-        if($emailCount > 0){
+        if ($emailCount > 0) {
             throw new ValidationException(['email' => 'Email already taken']);
         }
     }
@@ -36,7 +36,7 @@ class UserService
             ]
         )->count();
 
-        if($usernameCount > 0){
+        if ($usernameCount > 0) {
             throw new ValidationException(['username' => 'Username already taken']);
         }
     }
@@ -46,15 +46,61 @@ class UserService
         $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
 
         $this->database->query(
-            "INSERT INTO users_T (email, password, age, country, social_media_url) VALUES (:email, :password, )",
+            "INSERT INTO users_T(username, email, password, age, country) 
+            VALUES (:username, :email, :password, :age, :country)",
             [
+                'username' => $formData['username'],
                 'email' => $formData['email'],
                 'password' => $password,
                 'age' => $formData['age'],
                 'country' => $formData['country'],
-                'social_media_url' => $formData['social_media_url']
             ]
         );
+
+        session_regenerate_id();
+
+        $_SERVER['user'] = $this->database->id();
     }
 
+    public function login(array $formData): void
+    {
+        $user = $this->database->query(
+            "SELECT * FROM users_T WHERE email = :identifier OR username = :identifier",
+            [
+                'identifier' => $formData['email_username'],
+            ]
+        )->find();
+
+        $passwordsMatch = password_verify(
+            $formData['password'],
+            $user['password'] ?? ''
+        );
+
+        if (!$user || !$passwordsMatch) {
+            throw new ValidationException(['password' => ['Invalid credentials']]);
+        }
+
+        session_regenerate_id();
+
+        $_SESSION['user'] = $user['id'];
+    }
+
+
+    public function logout(): void
+    {
+        // unset($_SESSION['user']);
+        session_destroy();
+
+        // session_regenerate_id();
+        $params = session_get_cookie_params();
+        setcookie(
+            'PHPSESSID',
+            '',
+            time() - 3600,
+            $params['path'],
+            $params['domain'],
+            $params['secure'],
+            $params['httponly']
+        );
+    }
 }
