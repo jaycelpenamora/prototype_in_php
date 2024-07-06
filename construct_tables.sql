@@ -11,14 +11,15 @@ CREATE TABLE IF NOT EXISTS `movies_T` (
 
 CREATE TABLE IF NOT EXISTS `users_T` (
     `user_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `age` TINYINT UNSIGNED NOT NULL,
     `country` VARCHAR(255) NOT NULL,
-    `social_media_url` VARCHAR(255) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    UNIQUE KEY `users_t_email_unique` (`email`)
+    UNIQUE KEY `users_t_email_unique` (`email`),
+    UNIQUE KEY `users_t_username_unique` (`username`)
 );
 
 CREATE TABLE IF NOT EXISTS `rentals_T` (

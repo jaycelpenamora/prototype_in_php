@@ -10,6 +10,7 @@ class Database
 {
 
     public PDO $connection;
+    private PDOStatement $stmt;
 
     public function __construct(string $driver, array $config, string $username, string $password)
     {
@@ -23,7 +24,17 @@ class Database
         }
     }
 
-    public function query(string $query, array $params = []): void {
+    public function query(string $query, array $params = []): Database
+    {
         $this->connection->query($query);
+
+        $this->stmt->execute($params);
+
+        return $this;
+    }
+
+    public function count(): int
+    {
+        return (int)$this->stmt->fetchColumn();
     }
 }

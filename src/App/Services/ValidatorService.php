@@ -33,10 +33,10 @@ class ValidatorService
         $this->validator->validate(
             $data,
             [
+                'username' => ['required'],
                 'email' => ['required', 'email'],
                 'age' => ['required','min:16'],
                 'country' => ['required','in:Philippines,Malaysia,Singapore,Indonesia'],
-                'social_media_url' => ['required','url'],
                 'password' => ['required'],
                 'confirm_password' => ['required', 'match:password'],
                 'tos' => ['required']

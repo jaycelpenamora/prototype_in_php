@@ -2,6 +2,16 @@
 
 <section class="max-w-2xl mx-auto mt-12 p-4 bg-white shadow-md border border-gray-200 rounded">
   <form method="POST" class="grid grid-cols-1 gap-6">
+    <!-- username -->
+    <label class="block">
+      <span class="text-gray-700">Create Username</span>
+      <input value="<?php echo e($oldFormData['username'] ?? ''); ?>" name="username" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+      <?php if (array_key_exists('username', $errors)) : ?>
+        <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
+          <?php echo e($errors['username'][0]); ?>
+        </div>
+      <?php endif; ?>
+    </label>
     <!-- Email -->
     <label class="block">
       <span class="text-gray-700">Email address</span>
@@ -35,16 +45,6 @@
       <?php if (array_key_exists('country', $errors)) : ?>
         <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
           <?php echo e($errors['country'][0]); ?>
-        </div>
-      <?php endif; ?>
-    </label>
-    <!-- Social Media URL -->
-    <label class="block">
-      <span class="text-gray-700">Social Media URL</span>
-      <input value="<?php echo e($oldFormData['social_media_url'] ?? ''); ?>" name="social_media_url" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
-      <?php if (array_key_exists('social_media_url', $errors)) : ?>
-        <div class="bg-gray-100 mt-2 p-2 rounded text-red-500">
-          <?php echo e($errors['social_media_url'][0]); ?>
         </div>
       <?php endif; ?>
     </label>
