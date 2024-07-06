@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Framework;
 
-use PDO, PDOException;
+use PDO, PDOException, PDOStatement;
 
 class Database
 {
@@ -21,5 +21,9 @@ class Database
         } catch (PDOException $e) {
             die("Unable to connect to database");
         }
+    }
+
+    public function query(string $query, array $params = []): void {
+        $this->connection->query($query);
     }
 }
