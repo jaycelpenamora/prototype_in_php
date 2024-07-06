@@ -7,17 +7,9 @@ use Framework\Database;
 $db = new Database('mysql', [
     'host' => 'localhost',
     'port' => 3306,
-    'dbname' => 'test',
+    'dbname' => 'movie_rentals_db',
 ], 'root', '');
 
-$search = "Selena";
+$sqlFile = file_get_contents("./construct_tables.sql");
 
-$query = "SELECT * FROM items WHERE name=:name";
-
-$stmt = $db->connection->prepare($query);
-
-$stmt->bindValue('name', $search, PDO::PARAM_STR);
-
-$stmt->execute();
-
-var_dump($stmt->fetchAll(PDO::FETCH_OBJ));
+$db->connection->query($sqlFile);
