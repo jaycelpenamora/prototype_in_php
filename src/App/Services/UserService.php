@@ -43,7 +43,7 @@ class UserService
 
     public function createUser(array $formData): void
     {
-        $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+        $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 10]);
 
         $this->database->query(
             "INSERT INTO users_T(username, email, password, age, country) 
@@ -84,7 +84,6 @@ class UserService
 
         $_SESSION['user'] = $user['id'];
     }
-
 
     public function logout(): void
     {

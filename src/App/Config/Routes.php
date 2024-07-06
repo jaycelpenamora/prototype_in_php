@@ -6,9 +6,16 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\HomeController;
-use App\Controllers\AboutController;
-use App\Controllers\AuthController;
+use App\Controllers\{
+    HomeController,
+    AboutController,
+    AuthController
+};
+
+use App\Middleware\{
+    AuthRequiredMiddleware,
+    GuestOnlyMiddleware
+};
 
 function registerRoutes(App $app): void
 {
@@ -18,5 +25,5 @@ function registerRoutes(App $app): void
     $app->post('/register', [AuthController::class, 'register']);
     $app->get('/login', [AuthController::class, 'loginView']);
     $app->post('/login', [AuthController::class, 'login']);
-    $app->get('/logout', [AuthController::class, 'logoutView']);
+    // $app->get('/logout', [AuthController::class, 'logoutView']);
 }
