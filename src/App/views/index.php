@@ -28,7 +28,7 @@
     <thead class="bg-gray-50">
       <tr>
         <th class="p-4 text-left text-sm font-semibold text-gray-900">
-          Description
+          Rentals
         </th>
         <th class="p-4 text-left text-sm font-semibold text-gray-900">
           Amount
