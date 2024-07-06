@@ -31,7 +31,7 @@ class AuthController
 
         $this->userService->createUser($_POST);
 
-        redirect("/");
+        redirect('/');
     }
 
     public function loginView(): void
@@ -51,6 +51,6 @@ class AuthController
     public function logout(): void
     {
         $this->userService->logout();
-        redirect("/");
+        redirect('/login');
     }
 }

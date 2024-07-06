@@ -9,7 +9,7 @@ use PDO, PDOException, PDOStatement;
 class Database
 {
 
-    public PDO $connection;
+    private PDO $connection;
     private PDOStatement $stmt;
 
     public function __construct(string $driver, array $config, string $username, string $password)
@@ -18,9 +18,10 @@ class Database
         $config = http_build_query(data: $config, arg_separator: ';');
         $dsn = "{$driver}:{$config}";
         try {
-            $this->connection = new PDO($dsn, $username, $password, [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            ]);
+            // $this->connection = new PDO($dsn, $username, $password, [
+            //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            // ]);
+            $this->connection = new PDO($dsn, $username, $password);
         } catch (PDOException $e) {
             die("Unable to connect to database");
         }

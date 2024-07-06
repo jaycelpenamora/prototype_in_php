@@ -19,11 +19,11 @@ use App\Middleware\{
 
 function registerRoutes(App $app): void
 {
-    $app->get('/', [HomeController::class, 'home']);
+    $app->get('/', [HomeController::class, 'home'])->add(AuthRequiredMiddleware::class);
     $app->get('/about', [AboutController::class, 'about']);
-    $app->get('/register', [AuthController::class, 'registerView']);
-    $app->post('/register', [AuthController::class, 'register']);
-    $app->get('/login', [AuthController::class, 'loginView']);
-    $app->post('/login', [AuthController::class, 'login']);
-    // $app->get('/logout', [AuthController::class, 'logoutView']);
+    $app->get('/register', [AuthController::class, 'registerView'])->add(GuestOnlyMiddleware::class);
+    $app->post('/register', [AuthController::class, 'register'])->add(GuestOnlyMiddleware::class);
+    $app->get('/login', [AuthController::class, 'loginView'])->add(GuestOnlyMiddleware::class);
+    $app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
+    $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
 }

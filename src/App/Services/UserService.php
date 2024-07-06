@@ -43,7 +43,7 @@ class UserService
 
     public function createUser(array $formData): void
     {
-        $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 10]);
+        $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
 
         $this->database->query(
             "INSERT INTO users_T(username, email, password, age, country) 
@@ -59,7 +59,7 @@ class UserService
 
         session_regenerate_id();
 
-        $_SESSION['user'] = $this->database->id();
+        $_SESSION['user_id'] = $this->database->id();
     }
 
     public function login(array $formData): void
@@ -82,24 +82,27 @@ class UserService
 
         session_regenerate_id();
 
-        $_SESSION['user'] = $user['id'];
+
+        $_SESSION['user_id'] = $user['user_id'];
+
     }
 
     public function logout(): void
     {
-        // unset($_SESSION['user']);
-        session_destroy();
+        unset($_SESSION['user_id']);
+        session_regenerate_id();
+        // session_destroy();
 
         // session_regenerate_id();
-        $params = session_get_cookie_params();
-        setcookie(
-            'PHPSESSID',
-            '',
-            time() - 3600,
-            $params['path'],
-            $params['domain'],
-            $params['secure'],
-            $params['httponly']
-        );
+        // $params = session_get_cookie_params();
+        // setcookie(
+        //     'PHPSESSID',
+        //     '',
+        //     time() - 3600,
+        //     $params['path'],
+        //     $params['domain'],
+        //     $params['secure'],
+        //     $params['httponly']
+        // );
     }
 }

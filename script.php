@@ -12,4 +12,4 @@ $db = new Database('mysql', [
 
 $sqlFile = file_get_contents("./construct_tables.sql");
 
-$db->connection->query($sqlFile);
+$db->query($sqlFile);

@@ -10,7 +10,7 @@ class GuestOnlyMiddleware implements MiddlewareInterface
 {
   public function handle(callable $next):void
   {
-    if (!empty($_SESSION['user'])) {
+    if (!empty($_SESSION['user_id'])) {
       redirect('/');
     }
 
