@@ -7,7 +7,7 @@
     The page you are looking for was moved, removed renamed or might never
     existed.
   </p>
-  <a href="/" class="bg-orange-400 text-white inline-block py-2 px-4 rounded">Go Home</a>
+  <a href="/" class="bg-green-custom text-white inline-block py-2 px-4 rounded">Go Home</a>
 </section>
 <!-- End Main Content Area -->
 

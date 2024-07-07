@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `rentals_T` (
     `user_id` BIGINT UNSIGNED NOT NULL,
     `movie_id` BIGINT UNSIGNED NOT NULL,
     `issued_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `due_date` DATETIME NOT NULL,
+    `due_date` DATETIME,
     `return_date` DATETIME,
     FOREIGN KEY (`user_id`) REFERENCES `users_T` (`user_id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movies_T` (`movie_id`)

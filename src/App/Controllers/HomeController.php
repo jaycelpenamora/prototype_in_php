@@ -19,15 +19,14 @@ class HomeController
     {
         $page = $_GET['p'] ?? 1;
         $page = (int) $page;
-        $length = 3;
+        $length = 4;
         $offset = ($page - 1) * $length;
         $searchTerm = $_GET['s'] ?? null;
 
-        [$rentals, $count] = $this->transactionService->getRentals(
+        [$results, $count] = $this->transactionService->getRentals(
             $length,
             $offset
         );
-
         $lastPage = ceil($count / $length);
         $pages = $lastPage ? range(1, $lastPage) : [];
 
@@ -38,9 +37,9 @@ class HomeController
             ]),
             $pages
         );
-
+        // dd($results);
         echo $this->view->render("index.php", [
-            'rentals' => $rentals,
+            'results' => $results,
             'currentPage' => $page,
             'previousPageQuery' => http_build_query([
                 'p' => $page - 1,

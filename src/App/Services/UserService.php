@@ -60,6 +60,7 @@ class UserService
         session_regenerate_id();
 
         $_SESSION['user_id'] = $this->database->id();
+        $_SESSION['user_name'] = $formData['username'];
     }
 
     public function login(array $formData): void
@@ -82,14 +83,15 @@ class UserService
 
         session_regenerate_id();
 
-
         $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['user_name'] = $user['username'];
 
     }
 
     public function logout(): void
     {
         unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
         session_regenerate_id();
         // session_destroy();
 

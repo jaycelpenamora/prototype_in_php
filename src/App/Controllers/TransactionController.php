@@ -13,62 +13,93 @@ class TransactionController
     private TemplateEngine $view,
     private ValidatorService $validatorService,
     private TransactionService $transactionService
-  ) {
-  }
+  ) {}
 
-  public function createView(): void
+  public function addView(): void
   {
-    $movies = $this->transactionService->getMovies();
+    $page = $_GET['p'] ?? 1;
+    $page = (int) $page;
+    $length = 4;
+    $offset = ($page - 1) * $length;
+    $searchTerm = $_GET['s'] ?? null;
 
-    // dd($movies);
-    echo $this->view->render("transactions/create.php", [
-      'movies' => $movies
+    [$results, $count] = $this->transactionService->getMovies(
+      $length,
+      $offset
+    );
+
+    $lastPage = ceil($count / $length);
+    $pages = $lastPage ? range(1, $lastPage) : [];
+
+    $pageLinks = array_map(
+      fn($pageNum) => http_build_query([
+        'p' => $pageNum,
+        's' => $searchTerm
+      ]),
+      $pages
+    );
+    // dd($results);
+
+    echo $this->view->render("transactions/add.php", [
+      'results' => $results,
+      'currentPage' => $page,
+      'previousPageQuery' => http_build_query([
+        'p' => $page - 1,
+        's' => $searchTerm
+      ]),
+      'lastPage' => $lastPage,
+      'nextPageQuery' => http_build_query([
+        'p' => $page + 1,
+        's' => $searchTerm
+      ]),
+      'pageLinks' => $pageLinks,
+      'searchTerm' => $searchTerm
     ]);
   }
 
-  public function create(): void
+  public function add(array $params): void
   {
-    $this->transactionService->create($_POST);
+    $this->transactionService->add($_POST);
 
     redirect('/');
   }
 
-  // public function editView(array $params): void
-  // {
-  //   $transaction = $this->transactionService->getUserTransaction(
-  //     $params['transaction']
-  //   );
-  //
-  //   if (!$transaction) {
-  //     redirect('/');
-  //   }
-  //
-  //   echo $this->view->render('transactions/edit.php', [
-  //     'transaction' => $transaction
-  //   ]);
-  // }
+  public function editView(array $params): void
+  {
+    $transaction = $this->transactionService->getUserTransaction(
+      $params['transaction']
+    );
 
-  // public function edit(array $params): void
-  // {
-  //   $transaction = $this->transactionService->getUserTransaction(
-  //     $params['transaction']
-  //   );
-  //
-  //   if (!$transaction) {
-  //     redirect('/');
-  //   }
-  //
-  //   // $this->validatorService->validateTransaction($_POST);
-  //
-  //   $this->transactionService->update($_POST, $transaction['id']);
-  //
-  //   redirect($_SERVER['HTTP_REFERER']);
-  // }
+    if (!$transaction) {
+      redirect('/');
+    }
 
-  // public function delete(array $params): void
-  // {
-  //   $this->transactionService->delete((int) $params['transaction']);
-  //
-  //   redirect('/');
-  // }
+    echo $this->view->render('transactions/edit.php', [
+      'transaction' => $transaction
+    ]);
+  }
+
+  public function edit(array $params): void
+  {
+    $transaction = $this->transactionService->getUserTransaction(
+      $params['transaction']
+    );
+
+    if (!$transaction) {
+      redirect('/');
+    }
+
+    // $this->validatorService->validateTransaction($_POST);
+
+    $this->transactionService->update($_POST, $transaction['id']);
+
+    redirect($_SERVER['HTTP_REFERER']);
+  }
+
+  public function delete(array $params): void
+  {
+    $this->transactionService->delete((int) $params['transaction']);
+
+    redirect('/');
+  }
 }

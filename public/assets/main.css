@@ -876,6 +876,11 @@ select {
   background-color: rgb(236 253 245 / var(--tw-bg-opacity));
 }
 
+.bg-green-custom {
+  --tw-bg-opacity: 1;
+  background-color: rgb(150 181 117 / var(--tw-bg-opacity));
+}
+
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -1254,6 +1259,11 @@ hr {
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-indigo-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 46 129 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-red-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
@@ -1374,4 +1384,21 @@ hr {
 .bg-navy {
   --tw-border-opacity: 1;
   background-color: #160A31;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-s {
+  max-width: 320px;
+}
+
+.thumbnail {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
 }
