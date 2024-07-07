@@ -57,49 +57,17 @@ class TransactionController
     ]);
   }
 
-  public function add(array $params): void
+  public function create(array $params): void
   {
-    $this->transactionService->add($_POST);
-
+    $this->transactionService->add($params);
+    echo $this->view->render("success.php");
+    sleep(1);
     redirect('/');
-  }
-
-  public function editView(array $params): void
-  {
-    $transaction = $this->transactionService->getUserTransaction(
-      $params['transaction']
-    );
-
-    if (!$transaction) {
-      redirect('/');
-    }
-
-    echo $this->view->render('transactions/edit.php', [
-      'transaction' => $transaction
-    ]);
-  }
-
-  public function edit(array $params): void
-  {
-    $transaction = $this->transactionService->getUserTransaction(
-      $params['transaction']
-    );
-
-    if (!$transaction) {
-      redirect('/');
-    }
-
-    // $this->validatorService->validateTransaction($_POST);
-
-    $this->transactionService->update($_POST, $transaction['id']);
-
-    redirect($_SERVER['HTTP_REFERER']);
   }
 
   public function delete(array $params): void
   {
-    $this->transactionService->delete((int) $params['transaction']);
-
+    $this->transactionService->delete($params['transaction']);
     redirect('/');
   }
 }

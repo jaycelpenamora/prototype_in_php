@@ -5,7 +5,7 @@
   <div class="flex items-center justify-between border-b border-gray-200 pb-4">
     <h3 class="font-medium">Library</h3>
     <div class="flex space-x-4">
-      <a href="/transaction" class="flex items-center p-2 bg-sky-50 text-xs text-sky-900 hover:bg-sky-500 hover:text-white transition rounded">
+      <a href="/rent" class="flex items-center p-2 bg-sky-50 text-xs text-sky-900 hover:bg-sky-500 hover:text-white transition rounded">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
@@ -41,6 +41,15 @@
         <th>Actions</th>
       </tr>
     </thead>
+    <?php if (empty($results)) : ?>
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <tr>
+          <td class="p-4 text-sm text-gray-600 text-center" colspan="5">
+            No videotapes found, click + New rental to add!
+          </td>
+        </tr>
+      </tbody>
+    <?php endif; ?>
     <!-- Transaction Table Body -->
     <tbody class="divide-y divide-gray-200 bg-white">
       <?php foreach ($results as $result) : ?>
@@ -57,44 +66,22 @@
           <td class="p-4 text-sm text-gray-600">
             <?php echo e($result['rental_price']); ?>
           </td>
-          <!-- Receipt List -->
-          <!-- <td class="p-4 text-sm text-gray-600"> -->
-          <!--   <?php foreach ($result[''] as $receipt) : ?> -->
-          <!--     <div class="inline-block relative cursor-pointer"> -->
-          <!--       <a href="/result/<?php echo e($result['rental_id']); ?>/receipt/<?php echo e($receipt['rental_id']); ?>"> -->
-          <!--         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgb(109 40 217)" class="w-10 h-10"> -->
-          <!--           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /> -->
-          <!--         </svg> -->
-          <!--       </a> -->
-          <!--       <form action="/result/<?php echo e($result['rental_id']); ?>/receipt/<?php echo e($receipt['rental_id']); ?>" method="POST"> -->
-          <!--         <?php include $this->resolve("partials/_csrf.php"); ?> -->
-          <!--         <input type="hidden" name="_METHOD" value="DELETE" /> -->
-          <!--         <button type="submit" class="absolute -top-1 -right-1"> -->
-          <!--           <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(239 68 68)" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6"> -->
-          <!--             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /> -->
-          <!--           </svg> -->
-          <!--         </button> -->
-          <!--       </form> -->
-          <!--     </div> -->
-          <!--   <?php endforeach; ?> -->
-          <!-- </td> -->
-          <!-- Date -->
           <td class="p-4 text-sm text-gray-600">
             <?php echo e($result['due_date']); ?>
           </td>
           <!-- Actions -->
           <td class="p-4 text-sm text-gray-600 flex justify-center space-x-2">
-            <a href="/transaction/<?php echo e($result['rental_id']); ?>/receipt" class="p-2 bg-amber-50 text-xs text-amber-900 hover:bg-amber-500 hover:text-white transition rounded">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
-              </svg>
-            </a>
-            <a href="/transaction/<?php echo e($result['rental_id']); ?>" class="p-2 bg-emerald-50 text-xs text-emerald-900 hover:bg-emerald-500 hover:text-white transition rounded">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-              </svg>
-            </a>
-            <form action="/result/<?php echo e($result['rental_id']); ?>" method="POST">
+            <!-- <a href="/transaction/<?php echo e($result['rental_id']); ?>/receipt" class="p-2 bg-amber-50 text-xs text-amber-900 hover:bg-amber-500 hover:text-white transition rounded"> -->
+            <!--   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"> -->
+            <!--     <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" /> -->
+            <!--   </svg> -->
+            <!-- </a> -->
+            <!-- <a href="/transaction/<?php echo e($result['rental_id']); ?>" class="p-2 bg-emerald-50 text-xs text-emerald-900 hover:bg-emerald-500 hover:text-white transition rounded"> -->
+            <!--   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"> -->
+            <!--     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /> -->
+            <!--   </svg> -->
+            <!-- </a> -->
+            <form action="/transaction/<?php echo e($result['rental_id']); ?>" method="POST">
               <input type="hidden" name="_METHOD" value="DELETE" />
 
               <?php include $this->resolve("partials/_csrf.php"); ?>

@@ -1393,6 +1393,16 @@ hr {
   align-items: center;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.width-tiny {
+  width: 50px;
+}
+
 .container-s {
   max-width: 320px;
 }

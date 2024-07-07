@@ -10,23 +10,20 @@ class TransactionService
 {
   public function __construct(private Database $db) {}
 
-  public function add(array $formData): void
+  public function add(array $params): void
   {
-    $currentDate = new \DateTime();
-    $currentDate->modify('+1 month');
-    $dueDate = $currentDate->format('Y-m-d');
     $this->db->query(
-      "INSERT INTO transactions(user_id, description, amount, date)
-      VALUES(:user_id, :description, :amount, :date)",
+      "INSERT INTO rentals_T(user_id, movie_id, issued_date, due_date) 
+      VALUES(:user_id, :movie_id, :issued_date, :due_date)",
       [
-        'user_id' => $_SESSION['user'],
-        'description' => $formData['description'],
-        'amount' => $formData['amount'],
-        'date' => $dueDate
+        'user_id' => $_SESSION['user_id'],
+        'movie_id' => $params['movie_id'],
+        'issued_date' => date('Y-m-d'),
+        'due_date' => date('Y-m-d', strtotime('+1 month'))
       ]
     );
   }
-  
+
   public function getMovies(int $length, int $offset)
   {
     $searchTerm = addcslashes($_GET['s'] ?? '', '%_');
@@ -110,5 +107,16 @@ class TransactionService
     )->count();
 
     return [$rentals, $rentalsCount];
+  }
+
+  public function delete(string $rental_id): void
+  {
+    $this->db->query(
+      "DELETE FROM rentals_T WHERE rental_id = :rental_id AND user_id = :user_id",
+      [
+        'rental_id' => $rental_id,
+        'user_id' => $_SESSION['user_id']
+      ]
+    );
   }
 }

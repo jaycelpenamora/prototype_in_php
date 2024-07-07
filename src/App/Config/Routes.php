@@ -27,10 +27,9 @@ function registerRoutes(App $app): void
     $app->get('/login', [AuthController::class, 'loginView'])->add(GuestOnlyMiddleware::class);
     $app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
-    $app->get('/transaction', [TransactionController::class, 'addView'])->add(AuthRequiredMiddleware::class);
-    $app->post('/transaction', [TransactionController::class, 'add'])->add(AuthRequiredMiddleware::class);
-    $app->get('/transaction/{transaction}', [TransactionController::class, 'returnView'])->add(AuthRequiredMiddleware::class);
-    $app->post('/transaction/{transaction}', [TransactionController::class, 'edit'])->add(AuthRequiredMiddleware::class);
-    // $app->delete('/transaction/{transaction}', [TransactionController::class, 'delete'])->add(AuthRequiredMiddleware::class);
+    $app->get('/rent', [TransactionController::class, 'addView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/rent', [TransactionController::class, 'add'])->add(AuthRequiredMiddleware::class);
+    $app->get('/add/{movie_id}', [TransactionController::class, 'create'])->add(AuthRequiredMiddleware::class);
+    $app->delete('/transaction/{transaction}', [TransactionController::class, 'delete'])->add(AuthRequiredMiddleware::class);
     $app->setErrorHandler([ErrorController::class, 'notFound']);
 }
