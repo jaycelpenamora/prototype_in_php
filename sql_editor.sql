@@ -2,7 +2,7 @@ INSERT INTO `movies_T`(`movie_id`, `title`, `language`, `genre`, `release_date`,
 
 INSERT INTO `movies_T`(`movie_id`, `title`, `language`, `genre`, `release_date`, `rental_price`, `thumbnail_url`) VALUES (NULL, 'Amélie', 'French', 'Romantic Comedy', '2001-04-25 00:00:00', 299.00, 'https://m.media-amazon.com/images/I/714roYD1PYL._AC_UF894,1000_QL80_.jpg' );
 
-INSERT INTO `movies_T`(`movie_id`, `title`, `language`, `genre`, `release_date`, `rental_price`, `thumbnail_url`) VALUES (NULL, 'Spirited Away', 'Japanese', 'Animation', '2001-07-20 00:00:00', 349.00, 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg');
+INSERT INTO `movies_T`(`movie_id`, `title`, `language`, `genre`, `release_date`, `rental_price`, `thumbnail_url`) VALUES (NULL, 'Spirited Away', 'Japanese', 'Animation', '2001-07-20 00:00:00', 349.00, 'https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg');
 
 INSERT INTO `movies_T`(`movie_id`, `title`, `language`, `genre`, `release_date`, `rental_price`, `thumbnail_url`) VALUES (NULL, 'The Godfather', 'English', 'Crime', '1972-03-24 00:00:00', 499.00, 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg');
 
