@@ -12,7 +12,7 @@ class ErrorController
   {
   }
 
-  public function notFound()
+  public function notFound(): void
   {
     echo $this->view->render("errors/not-found.php");
   }

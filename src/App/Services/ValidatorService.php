@@ -54,4 +54,16 @@ class ValidatorService
             ]
         );
     }
+
+    public function validateTransaction(array $data): void
+    {
+        $this->validator->validate(
+            $data,
+            [
+                'description' => ['required'],
+                'amount' => ['required', 'min:1']
+            ]
+        );
+    }
+
 }

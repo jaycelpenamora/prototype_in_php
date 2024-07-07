@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `movies_T` (
     `genre` VARCHAR(255) NOT NULL,
     `release_date` DATETIME NOT NULL,
     `rental_price` DECIMAL(8, 2) NOT NULL,
+    `thumbnail_url` VARCHAR(255) NOT NULL,
     UNIQUE KEY `movies_t_title_unique` (`title`),
     INDEX `movies_t_genre_index` (`genre`)
 );
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `rentals_T` (
     `movie_id` BIGINT UNSIGNED NOT NULL,
     `issued_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `due_date` DATETIME NOT NULL,
-    `return_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    `return_date` DATETIME,
     FOREIGN KEY (`user_id`) REFERENCES `users_T` (`user_id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movies_T` (`movie_id`)
 );
